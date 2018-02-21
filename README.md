@@ -20,7 +20,7 @@ ping-check-clj is an open source study material that makes it easy to test for d
 
 2. sudo docker run -it --rm -p 3000:3000 --name ping-container ping-image
 
-or
+   or
 
    sudo docker run -d --rm -p 3000:3000 --name ping-container ping-image
 
