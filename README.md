@@ -5,7 +5,7 @@ ping-check-clj is an open source study material that makes it easy to test for d
 
 ### Download and Install
 
-0. lein new luminus ping-check-clj +http-kit +mongodb +auth +swagger
+0. lein new luminus ping-check-clj +http-kit +mongodb +auth +swagger +service
 
 1. lein run 
 
