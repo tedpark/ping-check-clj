@@ -4,14 +4,13 @@
   :url "http://example.com/FIXME"
 
   :dependencies [[buddy "2.0.0"]
-                 [ch.qos.logback/logback-classic "1.2.3"]
                  [clj-time "0.14.2"]
                  [com.google.guava/guava "20.0"]
                  [com.novemberain/monger "3.1.0" :exclusions [com.google.guava/guava]]
                  [compojure "1.6.0"]
                  [cprop "0.1.11"]
                  [funcool/struct "1.2.0"]
-                 [luminus-http-kit "0.1.5"]
+                 [luminus-immutant "0.2.4"]
                  [luminus-nrepl "0.1.4"]
                  [luminus/ring-ttl-session "0.3.2"]
                  [markdown-clj "1.0.2"]
@@ -39,7 +38,7 @@
   :target-path "target/%s/"
   :main ^:skip-aot ping-check-clj.core
 
-  :plugins []
+  :plugins [[lein-immutant "2.1.0"]]
 
   :profiles
   {:uberjar {:omit-source true

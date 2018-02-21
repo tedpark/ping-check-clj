@@ -1,7 +1,8 @@
 (ns ping-check-clj.middleware
   (:require [ping-check-clj.env :refer [defaults]]
             [ping-check-clj.config :refer [env]]
-            [ring-ttl-session.core :refer [ttl-memory-store]]
+            [ring.middleware.flash :refer [wrap-flash]]
+            [immutant.web.middleware :refer [wrap-session]]
             [ring.middleware.defaults :refer [site-defaults wrap-defaults]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [buddy.auth.accessrules :refer [restrict]]
@@ -26,7 +27,9 @@
 (defn wrap-base [handler]
   (-> ((:middleware defaults) handler)
       wrap-auth
+      wrap-flash
+      (wrap-session {:cookie-attrs {:http-only true}})
       (wrap-defaults
         (-> site-defaults
             (assoc-in [:security :anti-forgery] false)
-            (assoc-in  [:session :store] (ttl-memory-store (* 60 30)))))))
+            (dissoc :session)))))

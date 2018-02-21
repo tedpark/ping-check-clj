@@ -21,17 +21,28 @@
   [_ binding acc]
   (update-in acc [:letks] into [binding `(:identity ~'+compojure-api-request+)]))
 
+(defn ur-health-check []
+  "ss")
+
 (defapi service-routes
   {:swagger {:ui "/swagger-ui"
              :spec "/swagger.json"
              :data {:info {:version "1.0.0"
                            :title "Sample API"
                            :description "Sample Services"}}}}
-  
+
   (GET "/authenticated" []
-       :auth-rules authenticated?
-       :current-user user
-       (ok {:user user}))
+    :auth-rules authenticated?
+    :current-user user
+    (ok {:user user}))
+
+  (context "/api" []
+    :tags ["ping-test"]
+    (GET "/ping" []
+      :query-params [{url :- String "https://google.com"}]
+      :summary      "url defaults to https://google.com."
+      (ok {:url url})))
+
   (context "/api" []
     :tags ["thingie"]
 
